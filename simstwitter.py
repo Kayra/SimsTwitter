@@ -1,6 +1,11 @@
 from twitter import *
 import simplejson as json
+import time
+import random
+from apscheduler.scheduler import Scheduler
 
+sched = Scheduler()
+sched.start()
 
 twitter = Twitter(
             auth=OAuth('41864427-rQTnd0gZZb1w1J1zGsLyNGxdP6Jq7Mm3HGKumB8Ll', '5zIesDuQuQbEdx88E2nrZtuiTIDMpSV80SzGKHjEalQ',
@@ -30,5 +35,12 @@ def postTweet(message):
     twitter.statuses.update(status=message)
     log.close()
 
-postTweet(messages[0])
+sched.add_cron_job(postTweet(random.randint(0, len(messages))), day_of_the_week="mon-sun/6", hour='2-6/3')
 
+#Get a random message
+# random.randint(0, len(messages))
+
+#postTweet(messages[9])
+
+#TODO:
+#Delete message after 5 minutes
