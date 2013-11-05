@@ -35,7 +35,7 @@ def postTweet(message):
     twitter.statuses.update(status=message)
     log.close()
 
-sched.add_cron_job(postTweet(message[random.randint(0, len(messages))]), day_of_week="0-6/6", hour='2-6/3')
+sched.add_cron_job(postTweet(messages[random.randint(0, len(messages))]), day_of_week="0-6/6", hour='2-6/3')
 
 #Get a random message
 # random.randint(0, len(messages))
