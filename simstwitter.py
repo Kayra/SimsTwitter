@@ -5,6 +5,7 @@ import random
 from apscheduler.scheduler import Scheduler
 
 sched = Scheduler()
+sched.configure(standalone=true)
 sched.start()
 
 twitter = Twitter(
