@@ -38,8 +38,6 @@ def postTweet(message):
 
 sched.add_cron_job(lambda: postTweet(random.choice(messages)), day_of_week="0-6/6", hour='2-6/3')
 
-sched.add_cron_job(lambda: postTweet(random.choice(messages)), minute=49)
-
 sched.start()
 
 #Get a random message
