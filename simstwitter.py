@@ -6,7 +6,7 @@ from apscheduler.scheduler import Scheduler
 
 sched = Scheduler()
 sched.configure(standalone=True)
-sched.start()
+
 
 twitter = Twitter(
             auth=OAuth('41864427-rQTnd0gZZb1w1J1zGsLyNGxdP6Jq7Mm3HGKumB8Ll', '5zIesDuQuQbEdx88E2nrZtuiTIDMpSV80SzGKHjEalQ',
@@ -37,6 +37,10 @@ def postTweet(message):
     log.close()
 
 sched.add_cron_job(lambda: postTweet(random.choice(messages)), day_of_week="0-6/6", hour='2-6/3')
+
+sched.add_cron_job(lambda: postTweet(random.choice(messages)), minute=49)
+
+sched.start()
 
 #Get a random message
 # random.randint(0, len(messages))
